@@ -27,13 +27,20 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    val = {"From: I am in " : __name__}
+    val = "Hello from: "
+    val = val + __name__
+    val = val + " To the Universe"
     return val
 
-@app.route('/var/<name>')
-def echoPath(name):
-    val = {"value": name} 
-    return jsonify(val)
+@app.route('/<prefix>/<name>')
+def echoPath (prefix, name):
+    if prefix == 'var':
+        val = {"value":name}
+        val = jsonify (val)
+    else:
+        val = "we accept only 'var' as prefix"
+    return val 
+
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
