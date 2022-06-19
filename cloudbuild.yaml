@@ -1,4 +1,3 @@
 steps:
   - name: gcloud
-    args: ['app', 'deploy']
-  timeout: "1000s"
+    args: ["app", "deploy"]
